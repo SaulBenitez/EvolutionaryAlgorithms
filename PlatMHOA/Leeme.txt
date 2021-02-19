@@ -1,0 +1,37 @@
+Version de Chaotic Particle Swarm Optimization (CPSO) obtenida de:
+
+Tao Xiang, Xiaofeng Liao, Kwok-wo Wong. An improved particle swarm 
+optimization algorithm combined with piecewise linear chaotic map. 
+Volume 190, Issue 2, 2007, pp 1637-1645.
+
+
+DE/Rand/1/Bin			DER1B		der1b
+DE/Rand/1/Exp			DER1E		der1e
+DE/Best/1/Bin			DEB1B		deb1b
+DE/Best/1/Exp			DEB1E		deb1e
+DE/Current-to-Rand/1		DECR1		decr1
+DE/Current-to-Rand/1/Bin	DECR1B		decr1b
+DE/Current-to-Rand/1/Exp	DECR1E		decr1e
+DE/Current-to-Best/1		DECB1		decb1
+DE/Current-to-Best/1/Bin	DECB1B		decb1b
+DE/Current-to-Best/1/Exp	DECB1E		decb1e
+DE/Rand/2/Dir			DER2D		der2d
+DE/Rand/1/Either-Or		DER1EO		der1eo
+
+
+SET Fmin=%5
+SET Fmax=%6
+SET CR=%7
+
+Fmin=%Fmin%; Fmax=%Fmax%; CR=%CR%;
+
+SET Fmin=%5
+SET Fmax=%6
+SET Kmin=%7
+SET Kmax=%8
+SET CR=%9
+
+Fmin=%Fmin%; Fmax=%Fmax%; Kmin=%Kmin%; Kmax=%Kmax%; CR=%CR%;
+
+0.000000219580420 tiempo de calculo de evento
+0.000000285114885 tiempo de calculo de señal de control
