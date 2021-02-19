@@ -23,7 +23,7 @@ fprint = 1; % Print data information each generations
 % Problem parameters
 NEI=1;
 params.of = 2;% Objective functions
-params.d=5; % Design variables 
+params.d=20; % Design variables 
 params.c=0; % Constraints
 params.np = 50; % Population size
 params.gmax = 2000; % Max generations
