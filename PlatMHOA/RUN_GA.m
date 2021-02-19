@@ -25,8 +25,8 @@ NEI=1;
 params.of = 2;% Objective functions
 params.d=20; % Design variables 
 params.c=0; % Constraints
-params.np = 50; % Population size
-params.gmax = 2000; % Max generations
+params.np = 100; % Population size
+params.gmax = 1000; % Max generations
 params.lb=-15*ones(1,params.d); % Lower bounds
 params.ub=30*ones(1,params.d); % Upper bounds
 
