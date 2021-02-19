@@ -14,7 +14,7 @@ function DECB1E(f, NP, G, D, DP, Fmin, Fmax, Kmin, Kmax, CR, NEJ, xmin, xmax, fp
     countJE = countJE + NP;
     
     [~,idxbst] = min(AP(:,D+1,k));
-    fprintf('G = %4d \t J* = %0.5f \t RV = %d \t Je* = %0.15f \t Jev* = %5d \t x* = [', k, AP(idxbst,D+1,k), AP(idxbst,D+2,k), AP(idxbst,D+3,k), AP(idxbst,D+4,k))
+    fprintf('G = %4d \t J* = %0.5f \t RV = %d \t x* = [', k, AP(idxbst,D+1,k), AP(idxbst,D+2,k))
     for j = 1:D-1, fprintf('%0.20f, ', AP(idxbst,j,k)), end, fprintf('%0.20f]\n', AP(idxbst,D,k));
   
     while(k < G && countJE <= NEJ)
@@ -54,7 +54,7 @@ function DECB1E(f, NP, G, D, DP, Fmin, Fmax, Kmin, Kmax, CR, NEJ, xmin, xmax, fp
         
         [~,idxbst] = min(AP(:,D+1,k));
         if(mod(k,fprint) == 0)
-            fprintf('G = %4d \t J* = %0.5f \t RV = %d \t Je* = %0.15f \t Jev* = %5d \t x* = [', k, AP(idxbst,D+1,k), AP(idxbst,D+2,k), AP(idxbst,D+3,k), AP(idxbst,D+4,k))
+            fprintf('G = %4d \t J* = %0.5f \t RV = %d \t x* = [', k, AP(idxbst,D+1,k), AP(idxbst,D+2,k))
             for j = 1:D-1, fprintf('%0.20f, ', AP(idxbst,j,k)), end, fprintf('%0.20f]\n', AP(idxbst,D,k));
         end
     end

@@ -1,0 +1,48 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Autor:    Saul Enrique Benitez Garcia                     %
+% Archivo:  MainOpt.m                                       %
+% Titulo:   Evolucion diferencial 12 variantes              %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%********************************************************************
+% Descripcion: 
+%********************************************************************
+clear; close all; format long; clc;
+
+% rng('shuffle');
+% warning('off');
+
+%% Additional paths
+addpath('Algorithms')
+addpath('Problems')
+
+%% Parametros de impresion resultados
+fprint = 1;
+
+%% Parametros del problema
+NEI = 1;
+NA = 12;
+D = 20;
+DP = 4;
+NP = 50;
+G = 1000;
+NEJ = NP*G;
+xmin = -15*ones(1,D);
+xmax = 30*ones(1,D);
+
+%% Parametros del algoritmo
+Fmin = 0.1;
+Fmax = 0.9;
+CR = 0.6;
+
+%% Funcion objetivo
+f = @Ackley;
+
+%% Ejecucion del algoritmo
+parfor run = 1:NEI
+    fprintf('************************* Corrida %d - Best/1/Bin *************************\n', run);
+    DEB1B(f, NP, G, D, DP, Fmin, Fmax, CR, NEJ, xmin, xmax, fprint, run)
+end
+
+%% Guardado de parametros
+save(strcat('DEB1B','_',func2str(f),'_Config'))

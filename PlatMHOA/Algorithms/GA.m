@@ -12,7 +12,7 @@ function GA(params, fprint, run)
     end
     
     [~,idxbst] = min(AP(:,params.d+1,1));
-    fprintf('G = %4d \t J* = %0.5f \t RV = %d \t Je* = %0.15f \t Jev* = %5d \t x* = [', 1, AP(idxbst,params.d+1,1), AP(idxbst,params.d+2,1), AP(idxbst,params.d+3,1), AP(idxbst,params.d+4,1))
+    fprintf('G = %4d \t J* = %0.5f \t RV = %d \t x* = [', 1, AP(idxbst,params.ofidx,1), AP(idxbst,params.cvdidx,1))
     for j = 1:params.d-1, fprintf('%0.20f, ', AP(idxbst,j,1)), end, fprintf('%0.20f]\n', AP(idxbst,params.d,1));
     
     %% Evolutionary cycle
@@ -25,7 +25,7 @@ function GA(params, fprint, run)
         
         if(mod(gen+1,fprint) == 0)
             [~,idxbst] = min(AP(:,params.d+1,gen+1));
-            fprintf('G = %4d \t J* = %0.5f \t RV = %d \t Je* = %0.15f \t Jev* = %5d \t x* = [', gen+1, AP(idxbst,params.d+1,gen+1), AP(idxbst,params.d+2,gen+1), AP(idxbst,params.d+3,gen+1), AP(idxbst,params.d+4,gen+1))
+            fprintf('G = %4d \t J* = %0.5f \t RV = %d \t x* = [', gen, AP(idxbst,params.ofidx,gen), AP(idxbst,params.cvdidx,gen))
             for j = 1:params.d-1, fprintf('%0.20f, ', AP(idxbst,j,gen+1)), end, fprintf('%0.20f]\n', AP(idxbst,params.d,gen+1));
         end
     end

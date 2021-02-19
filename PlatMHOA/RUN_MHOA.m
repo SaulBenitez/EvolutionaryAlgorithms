@@ -14,37 +14,24 @@ clear; close all; format long; clc;
 
 %% Additional paths
 addpath('Algorithms')
+addpath('Problems')
 
 %% Parametros de impresion resultados
 fprint = 1;
- 
-%% Bound design variables
-%-------------------------------- varrho limits --------------------------------
-varrhoMax = [90.0e3, 30.0e3, 30e3, 35, 30, 10];     varrhoMin = [0, 0, 0, 0, 0, 0];
-%-------------------------------- Epsilon limits --------------------------------
-epsMax = [4, 4, 5];                                 epsMin = [0, 0, 0];
-%-------------------------------- Delta limits --------------------------------
-DeltaMax = [3, 2, 3];                               DeltaMin = [0, 0, 0];
-%-------------------------------- sigma limits --------------------------------
-sigmaMax = 1;                                       sigmaMin = 0;
-%-------------------------------- omega limits --------------------------------
-omegaMax = 2;                                       omegaMin = 0;
-%-------------------------------- psi limits --------------------------------
-psiMax = [8, 6, 2];                                 psiMin = [0, 0, 0];
 
 %% Parametros del problema
-NEI = 30;
+NEI = 1;
 NA = 12;
-D = 17;
+D = 20;
 DP = 4;
 NP = 50;
-G = 5;
+G = 1000;
 NEJ = NP*G;
-xmin = [varrhoMin, epsMin, DeltaMin, sigmaMin, omegaMin, psiMin];
-xmax = [varrhoMax, epsMax, DeltaMax, sigmaMax, omegaMax, psiMax];
-xi = [1000, 0.01];
+xmin = -15*ones(1,D);
+xmax = 30*ones(1,D);
 
 %% Parametros del algoritmo
+%--------ED
 F = [0.3,0.3,0.9];
 Fmin = 0.1;
 Fmax = 0.9;
@@ -56,8 +43,19 @@ CR = 0.6;
 CRmin = 0.1;
 CRmax = 0.9;
 
+%--------CPSO
+C1 = 2.05;
+C2 = 2.05;
+w = 0.729;
+vmin = -0.1*xmax;
+vmax = 0.1*xmax;      
+p = 0.7;
+rho = 0.1;
+
+%% Funcion objetivo
+f = @Ackley;
+
 %% Ejecucion de los algoritmos
-f = @ETCTA;
 parfor run = 1:NEI
     fprintf('************************* Corrida %d - Best/1/Bin *************************\n', run);
     DEB1B(f, NP, G, D, DP, Fmin, Fmax, CR, NEJ, xmin, xmax, fprint, run)
@@ -94,6 +92,9 @@ parfor run = 1:NEI
 
     fprintf('************************* Corrida %d - Rand/2/Dir *************************\n', run);
     DER2D(f, NP, G, D, DP, Fmin, Fmax, NEJ, xmin, xmax, fprint, run)
+    
+    fprintf('************************* Corrida %d - CPSO *************************\n', run);
+    CPSO(f, NP, D, DP, G, NEJ, xmin, xmax, C1, C2, w, vmin, vmax, p, rho, fprint, run);
 end
 
 %% Guardado de parametros
